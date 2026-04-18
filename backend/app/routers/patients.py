@@ -40,6 +40,10 @@ def create_patient(payload: PatientCreate, db: Session = Depends(get_db)):
         full_name=payload.full_name,
         diagnosis=payload.diagnosis,
         status=payload.status or "active",
+        sex=payload.sex,
+        age=payload.age,
+        height_cm=payload.height_cm,
+        weight_kg=payload.weight_kg,
     )
     db.add(patient)
     db.commit()

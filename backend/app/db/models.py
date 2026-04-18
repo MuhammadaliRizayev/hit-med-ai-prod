@@ -12,6 +12,11 @@ class Patient(Base):
     diagnosis = Column(String, nullable=True)
     status = Column(String, nullable=True)
 
+    sex = Column(String, nullable=True)
+    age = Column(Integer, nullable=True)
+    height_cm = Column(String, nullable=True)
+    weight_kg = Column(String, nullable=True)
+
     histories = relationship("PatientHistory", back_populates="patient", cascade="all, delete-orphan")
     labs = relationship("PatientLab", back_populates="patient", cascade="all, delete-orphan")
     treatments = relationship("PatientTreatment", back_populates="patient", cascade="all, delete-orphan")
