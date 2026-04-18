@@ -1,4 +1,6 @@
-﻿from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, ForeignKey, Text
+from sqlalchemy.orm import relationship
+
 from app.db.database import Base
 
 
@@ -8,4 +10,46 @@ class Patient(Base):
     id = Column(Integer, primary_key=True, index=True)
     full_name = Column(String, nullable=False)
     diagnosis = Column(String, nullable=True)
-    status = Column(String, default="active")
+    status = Column(String, nullable=True)
+
+    histories = relationship("PatientHistory", back_populates="patient", cascade="all, delete-orphan")
+    labs = relationship("PatientLab", back_populates="patient", cascade="all, delete-orphan")
+    treatments = relationship("PatientTreatment", back_populates="patient", cascade="all, delete-orphan")
+
+
+class PatientHistory(Base):
+    __tablename__ = "patient_histories"
+
+    id = Column(Integer, primary_key=True, index=True)
+    patient_id = Column(Integer, ForeignKey("patients.id"), nullable=False, index=True)
+    event_date = Column(String, nullable=False)
+    title = Column(String, nullable=False)
+    description = Column(Text, nullable=True)
+
+    patient = relationship("Patient", back_populates="histories")
+
+
+class PatientLab(Base):
+    __tablename__ = "patient_labs"
+
+    id = Column(Integer, primary_key=True, index=True)
+    patient_id = Column(Integer, ForeignKey("patients.id"), nullable=False, index=True)
+    test = Column(String, nullable=False)
+    value = Column(String, nullable=True)
+    unit = Column(String, nullable=True)
+    note = Column(String, nullable=True)
+
+    patient = relationship("Patient", back_populates="labs")
+
+
+class PatientTreatment(Base):
+    __tablename__ = "patient_treatments"
+
+    id = Column(Integer, primary_key=True, index=True)
+    patient_id = Column(Integer, ForeignKey("patients.id"), nullable=False, index=True)
+    treatment_type = Column(String, nullable=False)
+    title = Column(String, nullable=False)
+    status = Column(String, nullable=True)
+    note = Column(Text, nullable=True)
+
+    patient = relationship("Patient", back_populates="treatments")
