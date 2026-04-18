@@ -248,3 +248,20 @@ def create_patient_treatment(patient_id: int, payload: TreatmentCreate, db: Sess
             "note": item.note or "",
         },
     }
+@router.put("/{patient_id}", response_model=PatientResponse)
+def update_patient(patient_id: int, payload: PatientCreate, db: Session = Depends(get_db)):
+    patient = db.query(Patient).filter(Patient.id == patient_id).first()
+    if not patient:
+        raise HTTPException(status_code=404, detail="Patient not found")
+
+    patient.full_name = payload.full_name
+    patient.diagnosis = payload.diagnosis
+    patient.status = payload.status or patient.status
+    patient.sex = payload.sex
+    patient.age = payload.age
+    patient.height_cm = payload.height_cm
+    patient.weight_kg = payload.weight_kg
+
+    db.commit()
+    db.refresh(patient)
+    return patient
