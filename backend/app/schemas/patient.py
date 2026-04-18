@@ -15,6 +15,18 @@ class PatientCreate(BaseModel):
     medulloblastoma_m_status: str | None = None
     medulloblastoma_r_status: str | None = None
 
+    ependymoma_histology: str | None = None
+    ependymoma_molecular: str | None = None
+    ependymoma_location: str | None = None
+    ependymoma_m_status: str | None = None
+    ependymoma_r_status: str | None = None
+
+    ependymoma_histology: str | None = None
+    ependymoma_molecular: str | None = None
+    ependymoma_location: str | None = None
+    ependymoma_m_status: str | None = None
+    ependymoma_r_status: str | None = None
+
 
 class PatientResponse(BaseModel):
     id: int
@@ -30,6 +42,18 @@ class PatientResponse(BaseModel):
     medulloblastoma_molecular: str | None = None
     medulloblastoma_m_status: str | None = None
     medulloblastoma_r_status: str | None = None
+
+    ependymoma_histology: str | None = None
+    ependymoma_molecular: str | None = None
+    ependymoma_location: str | None = None
+    ependymoma_m_status: str | None = None
+    ependymoma_r_status: str | None = None
+
+    ependymoma_histology: str | None = None
+    ependymoma_molecular: str | None = None
+    ependymoma_location: str | None = None
+    ependymoma_m_status: str | None = None
+    ependymoma_r_status: str | None = None
 
     class Config:
         from_attributes = True

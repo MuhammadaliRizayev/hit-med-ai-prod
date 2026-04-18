@@ -48,6 +48,11 @@ def create_patient(payload: PatientCreate, db: Session = Depends(get_db)):
         medulloblastoma_molecular=payload.medulloblastoma_molecular,
         medulloblastoma_m_status=payload.medulloblastoma_m_status,
         medulloblastoma_r_status=payload.medulloblastoma_r_status,
+        ependymoma_histology=payload.ependymoma_histology,
+        ependymoma_molecular=payload.ependymoma_molecular,
+        ependymoma_location=payload.ependymoma_location,
+        ependymoma_m_status=payload.ependymoma_m_status,
+        ependymoma_r_status=payload.ependymoma_r_status,
     )
     db.add(patient)
     db.commit()
@@ -103,6 +108,11 @@ def update_patient(patient_id: int, payload: PatientCreate, db: Session = Depend
     patient.medulloblastoma_molecular = payload.medulloblastoma_molecular
     patient.medulloblastoma_m_status = payload.medulloblastoma_m_status
     patient.medulloblastoma_r_status = payload.medulloblastoma_r_status
+    patient.ependymoma_histology = payload.ependymoma_histology
+    patient.ependymoma_molecular = payload.ependymoma_molecular
+    patient.ependymoma_location = payload.ependymoma_location
+    patient.ependymoma_m_status = payload.ependymoma_m_status
+    patient.ependymoma_r_status = payload.ependymoma_r_status
 
     db.commit()
     db.refresh(patient)
