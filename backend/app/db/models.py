@@ -28,6 +28,11 @@ class Patient(Base):
     ependymoma_m_status = Column(String, nullable=True)
     ependymoma_r_status = Column(String, nullable=True)
 
+    pineoblastoma_histology = Column(String, nullable=True)
+    pineoblastoma_molecular = Column(String, nullable=True)
+    pineoblastoma_m_status = Column(String, nullable=True)
+    pineoblastoma_r_status = Column(String, nullable=True)
+
     histories = relationship("PatientHistory", back_populates="patient", cascade="all, delete-orphan")
     labs = relationship("PatientLab", back_populates="patient", cascade="all, delete-orphan")
     treatments = relationship("PatientTreatment", back_populates="patient", cascade="all, delete-orphan")

@@ -21,11 +21,31 @@ class PatientCreate(BaseModel):
     ependymoma_m_status: str | None = None
     ependymoma_r_status: str | None = None
 
+    pineoblastoma_histology: str | None = None
+    pineoblastoma_molecular: str | None = None
+    pineoblastoma_m_status: str | None = None
+    pineoblastoma_r_status: str | None = None
+
+    pineoblastoma_histology: str | None = None
+    pineoblastoma_molecular: str | None = None
+    pineoblastoma_m_status: str | None = None
+    pineoblastoma_r_status: str | None = None
+
     ependymoma_histology: str | None = None
     ependymoma_molecular: str | None = None
     ependymoma_location: str | None = None
     ependymoma_m_status: str | None = None
     ependymoma_r_status: str | None = None
+
+    pineoblastoma_histology: str | None = None
+    pineoblastoma_molecular: str | None = None
+    pineoblastoma_m_status: str | None = None
+    pineoblastoma_r_status: str | None = None
+
+    pineoblastoma_histology: str | None = None
+    pineoblastoma_molecular: str | None = None
+    pineoblastoma_m_status: str | None = None
+    pineoblastoma_r_status: str | None = None
 
 
 class PatientResponse(BaseModel):
@@ -49,11 +69,31 @@ class PatientResponse(BaseModel):
     ependymoma_m_status: str | None = None
     ependymoma_r_status: str | None = None
 
+    pineoblastoma_histology: str | None = None
+    pineoblastoma_molecular: str | None = None
+    pineoblastoma_m_status: str | None = None
+    pineoblastoma_r_status: str | None = None
+
+    pineoblastoma_histology: str | None = None
+    pineoblastoma_molecular: str | None = None
+    pineoblastoma_m_status: str | None = None
+    pineoblastoma_r_status: str | None = None
+
     ependymoma_histology: str | None = None
     ependymoma_molecular: str | None = None
     ependymoma_location: str | None = None
     ependymoma_m_status: str | None = None
     ependymoma_r_status: str | None = None
+
+    pineoblastoma_histology: str | None = None
+    pineoblastoma_molecular: str | None = None
+    pineoblastoma_m_status: str | None = None
+    pineoblastoma_r_status: str | None = None
+
+    pineoblastoma_histology: str | None = None
+    pineoblastoma_molecular: str | None = None
+    pineoblastoma_m_status: str | None = None
+    pineoblastoma_r_status: str | None = None
 
     class Config:
         from_attributes = True

@@ -53,6 +53,10 @@ def create_patient(payload: PatientCreate, db: Session = Depends(get_db)):
         ependymoma_location=payload.ependymoma_location,
         ependymoma_m_status=payload.ependymoma_m_status,
         ependymoma_r_status=payload.ependymoma_r_status,
+        pineoblastoma_histology=payload.pineoblastoma_histology,
+        pineoblastoma_molecular=payload.pineoblastoma_molecular,
+        pineoblastoma_m_status=payload.pineoblastoma_m_status,
+        pineoblastoma_r_status=payload.pineoblastoma_r_status,
     )
     db.add(patient)
     db.commit()
@@ -113,6 +117,10 @@ def update_patient(patient_id: int, payload: PatientCreate, db: Session = Depend
     patient.ependymoma_location = payload.ependymoma_location
     patient.ependymoma_m_status = payload.ependymoma_m_status
     patient.ependymoma_r_status = payload.ependymoma_r_status
+    patient.pineoblastoma_histology = payload.pineoblastoma_histology
+    patient.pineoblastoma_molecular = payload.pineoblastoma_molecular
+    patient.pineoblastoma_m_status = payload.pineoblastoma_m_status
+    patient.pineoblastoma_r_status = payload.pineoblastoma_r_status
 
     db.commit()
     db.refresh(patient)
