@@ -1,11 +1,9 @@
-.env
-.env.*
-.venv
+backend/.venv/
+backend/.env
+backend/app.db
 __pycache__/
 *.pyc
 node_modules/
 .next/
 dist/
 build/
-*.sqlite3
-*.db
