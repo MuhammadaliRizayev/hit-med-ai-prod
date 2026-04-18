@@ -10,6 +10,11 @@ class PatientCreate(BaseModel):
     height_cm: str | None = None
     weight_kg: str | None = None
 
+    medulloblastoma_histology: str | None = None
+    medulloblastoma_molecular: str | None = None
+    medulloblastoma_m_status: str | None = None
+    medulloblastoma_r_status: str | None = None
+
 
 class PatientResponse(BaseModel):
     id: int
@@ -20,6 +25,11 @@ class PatientResponse(BaseModel):
     age: int | None = None
     height_cm: str | None = None
     weight_kg: str | None = None
+
+    medulloblastoma_histology: str | None = None
+    medulloblastoma_molecular: str | None = None
+    medulloblastoma_m_status: str | None = None
+    medulloblastoma_r_status: str | None = None
 
     class Config:
         from_attributes = True

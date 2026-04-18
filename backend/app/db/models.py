@@ -17,6 +17,11 @@ class Patient(Base):
     height_cm = Column(String, nullable=True)
     weight_kg = Column(String, nullable=True)
 
+    medulloblastoma_histology = Column(String, nullable=True)
+    medulloblastoma_molecular = Column(String, nullable=True)
+    medulloblastoma_m_status = Column(String, nullable=True)
+    medulloblastoma_r_status = Column(String, nullable=True)
+
     histories = relationship("PatientHistory", back_populates="patient", cascade="all, delete-orphan")
     labs = relationship("PatientLab", back_populates="patient", cascade="all, delete-orphan")
     treatments = relationship("PatientTreatment", back_populates="patient", cascade="all, delete-orphan")

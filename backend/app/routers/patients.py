@@ -44,6 +44,10 @@ def create_patient(payload: PatientCreate, db: Session = Depends(get_db)):
         age=payload.age,
         height_cm=payload.height_cm,
         weight_kg=payload.weight_kg,
+        medulloblastoma_histology=payload.medulloblastoma_histology,
+        medulloblastoma_molecular=payload.medulloblastoma_molecular,
+        medulloblastoma_m_status=payload.medulloblastoma_m_status,
+        medulloblastoma_r_status=payload.medulloblastoma_r_status,
     )
     db.add(patient)
     db.commit()
@@ -79,6 +83,29 @@ def get_patient(patient_id: int, db: Session = Depends(get_db)):
     patient = db.query(Patient).filter(Patient.id == patient_id).first()
     if not patient:
         raise HTTPException(status_code=404, detail="Patient not found")
+    return patient
+
+
+@router.put("/{patient_id}", response_model=PatientResponse)
+def update_patient(patient_id: int, payload: PatientCreate, db: Session = Depends(get_db)):
+    patient = db.query(Patient).filter(Patient.id == patient_id).first()
+    if not patient:
+        raise HTTPException(status_code=404, detail="Patient not found")
+
+    patient.full_name = payload.full_name
+    patient.diagnosis = payload.diagnosis
+    patient.status = payload.status or patient.status
+    patient.sex = payload.sex
+    patient.age = payload.age
+    patient.height_cm = payload.height_cm
+    patient.weight_kg = payload.weight_kg
+    patient.medulloblastoma_histology = payload.medulloblastoma_histology
+    patient.medulloblastoma_molecular = payload.medulloblastoma_molecular
+    patient.medulloblastoma_m_status = payload.medulloblastoma_m_status
+    patient.medulloblastoma_r_status = payload.medulloblastoma_r_status
+
+    db.commit()
+    db.refresh(patient)
     return patient
 
 
@@ -248,20 +275,3 @@ def create_patient_treatment(patient_id: int, payload: TreatmentCreate, db: Sess
             "note": item.note or "",
         },
     }
-@router.put("/{patient_id}", response_model=PatientResponse)
-def update_patient(patient_id: int, payload: PatientCreate, db: Session = Depends(get_db)):
-    patient = db.query(Patient).filter(Patient.id == patient_id).first()
-    if not patient:
-        raise HTTPException(status_code=404, detail="Patient not found")
-
-    patient.full_name = payload.full_name
-    patient.diagnosis = payload.diagnosis
-    patient.status = payload.status or patient.status
-    patient.sex = payload.sex
-    patient.age = payload.age
-    patient.height_cm = payload.height_cm
-    patient.weight_kg = payload.weight_kg
-
-    db.commit()
-    db.refresh(patient)
-    return patient
