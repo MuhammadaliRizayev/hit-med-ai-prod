@@ -26,10 +26,30 @@ class PatientCreate(BaseModel):
     pineoblastoma_m_status: str | None = None
     pineoblastoma_r_status: str | None = None
 
+    protocol_table_id: str | None = None
+    protocol_risk_group: str | None = None
+    protocol_phase: str | None = None
+    protocol_review_required: str | None = None
+
+    protocol_table_id: str | None = None
+    protocol_risk_group: str | None = None
+    protocol_phase: str | None = None
+    protocol_review_required: str | None = None
+
     pineoblastoma_histology: str | None = None
     pineoblastoma_molecular: str | None = None
     pineoblastoma_m_status: str | None = None
     pineoblastoma_r_status: str | None = None
+
+    protocol_table_id: str | None = None
+    protocol_risk_group: str | None = None
+    protocol_phase: str | None = None
+    protocol_review_required: str | None = None
+
+    protocol_table_id: str | None = None
+    protocol_risk_group: str | None = None
+    protocol_phase: str | None = None
+    protocol_review_required: str | None = None
 
     ependymoma_histology: str | None = None
     ependymoma_molecular: str | None = None
@@ -42,10 +62,30 @@ class PatientCreate(BaseModel):
     pineoblastoma_m_status: str | None = None
     pineoblastoma_r_status: str | None = None
 
+    protocol_table_id: str | None = None
+    protocol_risk_group: str | None = None
+    protocol_phase: str | None = None
+    protocol_review_required: str | None = None
+
+    protocol_table_id: str | None = None
+    protocol_risk_group: str | None = None
+    protocol_phase: str | None = None
+    protocol_review_required: str | None = None
+
     pineoblastoma_histology: str | None = None
     pineoblastoma_molecular: str | None = None
     pineoblastoma_m_status: str | None = None
     pineoblastoma_r_status: str | None = None
+
+    protocol_table_id: str | None = None
+    protocol_risk_group: str | None = None
+    protocol_phase: str | None = None
+    protocol_review_required: str | None = None
+
+    protocol_table_id: str | None = None
+    protocol_risk_group: str | None = None
+    protocol_phase: str | None = None
+    protocol_review_required: str | None = None
 
 
 class PatientResponse(BaseModel):
@@ -74,10 +114,30 @@ class PatientResponse(BaseModel):
     pineoblastoma_m_status: str | None = None
     pineoblastoma_r_status: str | None = None
 
+    protocol_table_id: str | None = None
+    protocol_risk_group: str | None = None
+    protocol_phase: str | None = None
+    protocol_review_required: str | None = None
+
+    protocol_table_id: str | None = None
+    protocol_risk_group: str | None = None
+    protocol_phase: str | None = None
+    protocol_review_required: str | None = None
+
     pineoblastoma_histology: str | None = None
     pineoblastoma_molecular: str | None = None
     pineoblastoma_m_status: str | None = None
     pineoblastoma_r_status: str | None = None
+
+    protocol_table_id: str | None = None
+    protocol_risk_group: str | None = None
+    protocol_phase: str | None = None
+    protocol_review_required: str | None = None
+
+    protocol_table_id: str | None = None
+    protocol_risk_group: str | None = None
+    protocol_phase: str | None = None
+    protocol_review_required: str | None = None
 
     ependymoma_histology: str | None = None
     ependymoma_molecular: str | None = None
@@ -90,10 +150,30 @@ class PatientResponse(BaseModel):
     pineoblastoma_m_status: str | None = None
     pineoblastoma_r_status: str | None = None
 
+    protocol_table_id: str | None = None
+    protocol_risk_group: str | None = None
+    protocol_phase: str | None = None
+    protocol_review_required: str | None = None
+
+    protocol_table_id: str | None = None
+    protocol_risk_group: str | None = None
+    protocol_phase: str | None = None
+    protocol_review_required: str | None = None
+
     pineoblastoma_histology: str | None = None
     pineoblastoma_molecular: str | None = None
     pineoblastoma_m_status: str | None = None
     pineoblastoma_r_status: str | None = None
+
+    protocol_table_id: str | None = None
+    protocol_risk_group: str | None = None
+    protocol_phase: str | None = None
+    protocol_review_required: str | None = None
+
+    protocol_table_id: str | None = None
+    protocol_risk_group: str | None = None
+    protocol_phase: str | None = None
+    protocol_review_required: str | None = None
 
     class Config:
         from_attributes = True

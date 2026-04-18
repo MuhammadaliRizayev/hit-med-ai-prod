@@ -9,6 +9,41 @@ from app.schemas.patient import PatientCreate, PatientResponse
 router = APIRouter(prefix="/patients", tags=["patients"])
 
 
+def resolve_protocol(diagnosis: str | None):
+    raw = (diagnosis or "").lower().strip()
+
+    if "medulloblastoma" in raw or "medullablastoma" in raw or "medullo" in raw:
+        return {
+            "table_id": "MB-STD",
+            "risk_group": "Standard",
+            "phase": "Initial",
+            "review_required": "false",
+        }
+
+    if "epend" in raw:
+        return {
+            "table_id": "EPN-STD",
+            "risk_group": "Standard",
+            "phase": "Initial",
+            "review_required": "false",
+        }
+
+    if "pineo" in raw:
+        return {
+            "table_id": "PIN-STD",
+            "risk_group": "Standard",
+            "phase": "Initial",
+            "review_required": "false",
+        }
+
+    return {
+        "table_id": "Pending",
+        "risk_group": "Pending",
+        "phase": "Initial",
+        "review_required": "true",
+    }
+
+
 class HistoryCreate(BaseModel):
     event_date: str
     title: str
@@ -36,6 +71,8 @@ def list_patients(db: Session = Depends(get_db)):
 
 @router.post("/", response_model=PatientResponse)
 def create_patient(payload: PatientCreate, db: Session = Depends(get_db)):
+    proto = resolve_protocol(payload.diagnosis)
+
     patient = Patient(
         full_name=payload.full_name,
         diagnosis=payload.diagnosis,
@@ -57,6 +94,10 @@ def create_patient(payload: PatientCreate, db: Session = Depends(get_db)):
         pineoblastoma_molecular=payload.pineoblastoma_molecular,
         pineoblastoma_m_status=payload.pineoblastoma_m_status,
         pineoblastoma_r_status=payload.pineoblastoma_r_status,
+        protocol_table_id=proto["table_id"],
+        protocol_risk_group=proto["risk_group"],
+        protocol_phase=proto["phase"],
+        protocol_review_required=proto["review_required"],
     )
     db.add(patient)
     db.commit()
@@ -101,6 +142,8 @@ def update_patient(patient_id: int, payload: PatientCreate, db: Session = Depend
     if not patient:
         raise HTTPException(status_code=404, detail="Patient not found")
 
+    proto = resolve_protocol(payload.diagnosis)
+
     patient.full_name = payload.full_name
     patient.diagnosis = payload.diagnosis
     patient.status = payload.status or patient.status
@@ -121,6 +164,10 @@ def update_patient(patient_id: int, payload: PatientCreate, db: Session = Depend
     patient.pineoblastoma_molecular = payload.pineoblastoma_molecular
     patient.pineoblastoma_m_status = payload.pineoblastoma_m_status
     patient.pineoblastoma_r_status = payload.pineoblastoma_r_status
+    patient.protocol_table_id = proto["table_id"]
+    patient.protocol_risk_group = proto["risk_group"]
+    patient.protocol_phase = proto["phase"]
+    patient.protocol_review_required = proto["review_required"]
 
     db.commit()
     db.refresh(patient)
