@@ -1,9 +1,6 @@
-backend/.venv/
-backend/.env
+﻿backend/.venv/
 backend/app.db
-__pycache__/
-*.pyc
-node_modules/
-.next/
-dist/
-build/
+frontend/.next/
+frontend/node_modules/
+frontend/.vercel/
+*.log
